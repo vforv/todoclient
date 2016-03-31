@@ -14,8 +14,12 @@ function tasks($routeProvider) {
                 templateUrl: '/views/dashboard.html'
 
             }).
+            when('/', {
+                templateUrl: '/views/dashboard.html'
+
+            }).
             when('/login', {
-                controller: "SinginController",
+                controller: "LoginController",
                 controllerAs: "vm",
                 templateUrl: '/views/login.html'
 
@@ -27,8 +31,7 @@ function tasks($routeProvider) {
 
             }).
             otherwise({
-                redirectTo: '/'
-
+                    redirectTo: '/dashboard'
             });
 
 

@@ -2,13 +2,16 @@ angular.module('todo')
         .controller("MainController", mainData)
         .controller("DashboardController", dashData)
         .controller("SinginController", controllerData)
-        .controller("LoginController", loginData);
+        .controller("LoginController", loginData)
+.controller("OtherwiseController", otherData);
+
 
 function mainData() {
 
 }
 
 function controllerData(CreateUser) {
+    
     var vm = this;
     vm.submit = submit;
     vm.success = false;
@@ -39,7 +42,7 @@ function loginData(LoginUser, $location) {
                         localStorage.setItem('auth_token', user.data.token);
                         return $location.path('/dashboard');
                     } else {
-                        return $location.path('/');
+                        return $location.path('/login');
                     }
 
                 });
@@ -80,3 +83,5 @@ function dashData($http) {
     }
 
 }
+
+ 

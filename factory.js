@@ -49,8 +49,6 @@ function authUser($q, $location) {
             config.headers = config.headers || {};
             if(localStorage.auth_token) {
                 config.headers.Auth = localStorage.auth_token;
-            }else{
-                $location.path("/login");
             }
             return config;
         },
