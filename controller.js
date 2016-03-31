@@ -83,7 +83,7 @@ function dashData($http,$location) {
     }
 
     function logout() {
-        $http.delete("https://pure-bayou-79286.herokuapp.com/users/logout")
+        $http.delete("https://pure-bayou-79286.herokuapp.com/user/logout")
                 .then(function () {
                     localStorage.clear();
                 return $location.path('/login');
