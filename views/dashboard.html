@@ -1,0 +1,24 @@
+
+<div ng-controller="DashboardController as vm">
+
+
+
+
+    <div class="container">
+        <div class="modal-dialog">
+            <div class="loginmodal-container">
+                <h2 class="text-ceter">Create new Todo</h2><br>
+                <form method="POST" >
+                    <input type="text" name="user" ng-model="vm.desc" placeholder="Description">
+                    <input type="submit" name="create" ng-click="vm.addTodo()" class="login loginmodal-submit" value="Add todo">
+                </form>
+            </div>
+        </div>
+        
+        <h2>Todos List </h2>
+        <ul class="list-group">
+            <div ng-repeat="todo in vm.todos">
+                <li class="list-group-item" style="margin-bottom: 15px;"> {{ todo.description}} <a ng-if="todo.status === false" style="color:red;cursor: cell;" class="pull-right" ng-click="vm.updateStatus(todo.id,todo)"><i class="glyphicon glyphicon-remove"></i></a> <i ng-if="todo.status === true" style="color:green;" class="glyphicon pull-right glyphicon-ok"></i></li>
+            </div>
+    </div>
+</div>

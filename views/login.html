@@ -1,0 +1,17 @@
+<div class="container" ng-controller="LoginController as login">
+    
+        <div class="modal-dialog">
+            <div class="loginmodal-container">
+                <h1>Login to Your Account</h1><br>
+                <form method="POST" >
+                    <input type="text" name="user" ng-model="login.user" placeholder="Email">
+                    <input type="password" name="pass" ng-model="login.password" placeholder="Password">
+                    <input type="submit" name="login" ng-click="login.submit()" class="login loginmodal-submit" value="Login">
+                </form>
+
+                <div class="login-help">
+                    <a target="_self" href="#singin">Register</a>
+                </div>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="container" ng-controller="SinginController as vm">
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <h1>Singin</h1><br>
+            <form method="POST" >
+                <input type="text" name="user" ng-model="vm.user" placeholder="Email">
+                <input type="password" name="pass" ng-model="vm.password" placeholder="Password">
+                <input type="submit" name="login" ng-click="vm.submit()" class="login loginmodal-submit" value="Login">
+            </form>
+            
+            <div ng-show="vm.success">
+                <span class="alert-success">Success! <a target="_self" ng-href="#login">Login</a> to your account</span>
+            </div>
+        </div>
+    </div>
+</div>
