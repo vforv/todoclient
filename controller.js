@@ -3,7 +3,6 @@ angular.module('todo')
         .controller("DashboardController", dashData)
         .controller("SinginController", controllerData)
         .controller("LoginController", loginData)
-.controller("OtherwiseController", otherData);
 
 
 function mainData() {
@@ -11,20 +10,20 @@ function mainData() {
 }
 
 function controllerData(CreateUser) {
-    
+
     var vm = this;
     vm.submit = submit;
     vm.success = false;
     function submit() {
-       CreateUser.saveUser(vm.user, vm.password)
-               .then(function(user){
-                   if (user.status === 200) {
-                       vm.success = true;
-                   }
-       }); 
+        CreateUser.saveUser(vm.user, vm.password)
+                .then(function (user) {
+                    if (user.status === 200) {
+                        vm.success = true;
+                    }
+                });
     }
 
-    
+
 
 }
 
@@ -33,7 +32,7 @@ function loginData(LoginUser, $location) {
     var vm = this;
 
     vm.submit = submit;
-    
+
     function submit() {
 
         LoginUser.getToken(vm.user, vm.password)
@@ -49,18 +48,19 @@ function loginData(LoginUser, $location) {
     }
 }
 
-function dashData($http) {
+function dashData($http,$location) {
     var vm = this;
     vm.todos;
     vm.addTodo = addTodo;
     vm.updateStatus = updateStatus;
-    
+    vm.logout = logout;
+
     $http.get('https://pure-bayou-79286.herokuapp.com/todos')
             .then(function (todos) {
                 vm.todos = todos.data;
             });
 
-    
+
 
     function addTodo() {
         $http({
@@ -71,17 +71,24 @@ function dashData($http) {
             vm.todos.push(item.data);
         });
     }
-    
-    function updateStatus(id,todo) {
+
+    function updateStatus(id, todo) {
         $http({
             method: "PUT",
-            url: "https://pure-bayou-79286.herokuapp.com/todos/"+id,
+            url: "https://pure-bayou-79286.herokuapp.com/todos/" + id,
             data: {status: true}
         }).then(function (item) {
             todo.status = item.data.status;
         });
     }
 
+    function logout() {
+        $http.delete("https://pure-bayou-79286.herokuapp.com/users/logout")
+                .then(function () {
+                    localStorage.clear();
+                return $location.path('/login');
+                });
+    }
 }
 
  
